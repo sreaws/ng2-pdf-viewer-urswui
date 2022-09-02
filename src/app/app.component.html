@@ -1,0 +1,530 @@
+<mat-tab-group mat-align-tabs="center" [selectedIndex]="selected.value">
+  <mat-tab label="General Settings">
+    <div id="mailSection" [formGroup]="coordinates">
+      <div class="mailForm" formGroupName="generalSettings">
+        <div style="width: 100%; overflow: hidden;">
+          <mat-form-field
+            style="width: 400px; height: 4px; float;"
+            appearance="standard"
+          >
+            <mat-label>Expo Name</mat-label>
+            <input type="text" formControlName="expoName" matInput required />
+          </mat-form-field>
+
+          <mat-form-field
+            style="width: 195px; height: %100; float;"
+            appearance="standard"
+          >
+            <mat-label>Start Date</mat-label>
+            <input
+              type="date"
+              s
+              formControlName="startDate"
+              matInput
+              required
+            />
+          </mat-form-field>
+          <mat-form-field
+            style="width: 195px; height: %100;margin-left:10px; float;"
+            appearance="standard"
+          >
+            <mat-label>Finish Date</mat-label>
+            <input
+              type="date"
+              s
+              formControlName="finishDate"
+              matInput
+              required
+            />
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            style="float: right;"
+            color="primary"
+            (click)="selected.setValue(1)"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Mail Settings">
+    <div id="mailSection" [formGroup]="coordinates">
+      <div class="mailForm" formGroupName="mailSettings">
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px; float;"
+            appearance="standard"
+          >
+            <mat-label>User Name</mat-label>
+            <input type="text" formControlName="userName" matInput required />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px; float;"
+            appearance="standard"
+          >
+            <mat-label>User Password</mat-label>
+            <input
+              type="password"
+              s
+              formControlName="userPassword"
+              matInput
+              required
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px;"
+            appearance="standard"
+          >
+            <mat-label>From</mat-label>
+
+            <input type="email" formControlName="from" matInput required />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px;"
+            appearance="standard"
+          >
+            <mat-label>To</mat-label>
+            <input type="email" formControlName="to" matInput required />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px;"
+            appearance="standard"
+          >
+            <mat-label>CC</mat-label>
+            <input type="email" formControlName="cc" matInput />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field
+            style="width: 400px; height: 4px; margin-bottom: 60px"
+            appearance="standard"
+          >
+            <mat-label>BCC</mat-label>
+            <input type="text" formControlName="bcc" matInput />
+          </mat-form-field>
+        </p>
+        <button
+          mat-raised-button
+          style="float: left;"
+          color="primary"
+          (click)="selected.setValue(0)"
+        >
+          Previous
+        </button>
+        <button
+          mat-raised-button
+          style="float: right;"
+          color="primary"
+          (click)="selected.setValue(2)"
+        >
+          Next
+        </button>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="content" formGroupName="mailSettings">
+        <h2 id="secondPartTitle">MAIL TEMPLATE</h2>
+        <br />
+        <ckeditor
+          [config]="{ height: 960, width: 666 }"
+          formControlName="templateHtml"
+          data="templateHtml"
+        >
+        </ckeditor>
+        <input
+          type="button"
+          value="Get Data -to console-"
+          (click)="getDataFromCKEditor()"
+        />
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="PDF Settings">
+    <!-- <pre>{{ coordinates.value | json }}</pre> -->
+
+    <div id="formGroupBorder">
+      <div id="FormGroup" [formGroup]="coordinates">
+        <div id="pdfFormGroup" formGroupName="pdfSettings">
+          <div style="width: 100%; overflow: hidden;">
+            <div style="float: left;" formGroupName="name">
+              <mat-form-field style="width: 240px;" appearance="standard">
+                <mat-label>Name Surname</mat-label>
+                <input
+                  type="text"
+                  formControlName="previewText"
+                  matInput
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field style="width: 60px;" appearance="standard">
+                <mat-label>Font Size</mat-label>
+                <input
+                  type="number"
+                  formControlName="fontSize"
+                  matInput
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div style="margin-left: 320px;">
+              <mat-form-field style="width: 300px;" appearance="standard">
+                <mat-label>E-mail</mat-label>
+                <input type="email" formControlName="eMail" matInput required />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div style="width: 100%; overflow: hidden;">
+            <mat-form-field
+              style="width: 300px; float: left;"
+              appearance="standard"
+            >
+              <mat-label>Phone Number</mat-label>
+              <input
+                type="tel"
+                formControlName="phoneNumber"
+                matInput
+                required
+              />
+            </mat-form-field>
+            <div style="margin-left: 320px;" formGroupName="companyName">
+              <mat-form-field style="width: 240px;" appearance="standard">
+                <mat-label>Company Name</mat-label>
+                <input formControlName="previewText" matInput required />
+              </mat-form-field>
+              <mat-form-field style="width: 60px;" appearance="standard">
+                <mat-label>Font Size</mat-label>
+                <input
+                  type="number"
+                  formControlName="fontSize"
+                  matInput
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div style="width: 100%; overflow: hidden;">
+            <div style="float: left;" formGroupName="title">
+              <mat-form-field style="width: 240px;" appearance="standard">
+                <mat-label>Title</mat-label>
+                <input formControlName="previewText" matInput required />
+              </mat-form-field>
+              <mat-form-field style="width: 60px;" appearance="standard">
+                <mat-label>Font Size</mat-label>
+                <input
+                  type="number"
+                  formControlName="fontSize"
+                  matInput
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div style="margin-left: 320px;">
+              <mat-form-field style="width: 300px;" appearance="standard">
+                <mat-label>Sector?</mat-label>
+                <input formControlName="sector" matInput required />
+              </mat-form-field>
+            </div>
+
+            <div style="width: 100%; overflow: hidden;">
+              <mat-form-field
+                style="width: 300px; float: left;"
+                appearance="standard"
+              >
+                <mat-label>Country</mat-label>
+                <input type="tel" formControlName="city" matInput required />
+              </mat-form-field>
+              <div style="margin-left: 320px;">
+                <mat-form-field style="width: 300px;" appearance="standard">
+                  <mat-label>City</mat-label>
+                  <input formControlName="country" matInput required />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div
+            style="float: left; padding-right: 25px"
+            formGroupName="visitorCheck"
+          >
+            <mat-form-field appearance="fill" style="">
+              <mat-select formControlName="previewText" required>
+                <mat-option value="Visitor">Visitor</mat-option>
+                <mat-option value="Exhibitor">Exhibitor</mat-option>
+              </mat-select>
+
+              <mat-label>Visitor / Exhibitor</mat-label>
+            </mat-form-field>
+          </div>
+          <mat-form-field
+            style="width: 70px;margin-right: 20px;"
+            appearance="standard"
+          >
+            <mat-label>Grid Size</mat-label>
+            <input type="number" formControlName="gridSize" matInput required />
+          </mat-form-field>
+          <label for="pdf-file">PDF:</label>
+          <input id="pdf-file" type="file" (change)="onFileChange($event)" />
+          <button
+            mat-raised-button
+            style="float: left;"
+            color="primary"
+            (click)="selected.setValue(1)"
+          >
+            Previous
+          </button>
+          <button
+            mat-raised-button
+            style=" margin-left:180px"
+            color="primary"
+            (click)="printAllForm()"
+          >
+            PrintAll
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="outerContainer">
+      <div
+        id="offsetValues"
+        style="width: %100; overflow: hidden;"
+        [formGroup]="offset"
+      >
+        <mat-form-field style="width: 60px;float:left;" appearance="standard">
+          <mat-label>Off set X</mat-label>
+          <input type="number" formControlName="x" matInput required />
+        </mat-form-field>
+        <mat-form-field style="width: 60px;" appearance="standard">
+          <mat-label>Off set Y </mat-label>
+          <input type="number" formControlName="y" matInput required />
+        </mat-form-field>
+      </div>
+      <pre>{{ coordinates.value.pdfSettings.name | json }}</pre>
+      <div
+        class="pdf-container"
+        [style.width]="pdfWidth"
+        [style.height]="pdfHeight"
+        style="overflow: hidden; position: relative;margin: auto"
+      >
+        <pdf-viewer
+          [src]="pdfByteArray"
+          [rotation]="0"
+          [page]="1"
+          [stick-to-page]="true"
+          [original-size]="false"
+          [show-all]="false"
+          [fit-to-page]="true"
+          [zoom]="1"
+          [zoom-scale]="'page-width'"
+          [stick-to-page]="false"
+          [render-text]="true"
+          [external-link-target]="'blank'"
+          [autoresize]="true"
+          [show-borders]="false"
+          [style.width]="pdfWidth"
+          [style.height]="pdfHeight"
+          [style.maxWidth]="pdfWidth"
+          [style.maxHeight]="pdfHeight"
+        ></pdf-viewer>
+        <div
+          class="plusHorizontal" style="
+        position: absolute;
+        top: {{ offset.value.x }}px;
+        left: {{ offset.value.y - 10}}px;
+        "
+        ></div>
+        <div class="plusVertical" style="
+        position: absolute;
+        top: {{ offset.value.x - 10}}px;
+        left: {{ offset.value.y }}px;
+        "></div>
+        <div
+          cdkDrag
+          cdkDragBoundary=".pdf-container"
+          style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 255, 0, 0.2);
+        width: {{ coordinates.value.pdfSettings.name.w }}px;
+        height: {{ coordinates.value.pdfSettings.name.h }}px;
+      "
+          (cdkDragMoved)="onDrag('name', $event)"
+          (cdkDragEnded)="onDragEnd('name', $event)"
+          [cdkDragFreeDragPosition]="{
+            x: dragPositions.name.x + offset.value.x,
+            y: dragPositions.name.y + offset.value.y
+          }"
+          mwlResizable
+          [enableGhostResize]="true"
+          (resizeEnd)="onResizeEnd('name', $event)"
+        >
+          <div class="drag-handle" cdkDragHandle></div>
+          <div
+            class="resize-handle-top"
+            mwlResizeHandle
+            [resizeEdges]="{ top: true }"
+          ></div>
+          <div
+            class="resize-handle-left"
+            mwlResizeHandle
+            [resizeEdges]="{ left: true }"
+          ></div>
+          <div
+            class="resize-handle-right"
+            mwlResizeHandle
+            [resizeEdges]="{ right: true }"
+          ></div>
+          <div
+            class="resize-handle-bottom"
+            mwlResizeHandle
+            [resizeEdges]="{ bottom: true }"
+          ></div>
+        </div>
+
+        <div
+          cdkDrag
+          cdkDragBoundary=".pdf-container"
+          style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 255, 0, 0.2);
+        width: {{ coordinates.value.pdfSettings.title.w }}px;
+        height: {{ coordinates.value.pdfSettings.title.h }}px;
+      "
+          (cdkDragMoved)="onDrag('title', $event)"
+          (cdkDragEnded)="onDragEnd('title', $event)"
+          [cdkDragFreeDragPosition]="{
+            x: dragPositions.title.x + offset.value.x,
+            y: dragPositions.title.y + offset.value.y
+          }"
+          mwlResizable
+          [enableGhostResize]="true"
+          (resizeEnd)="onResizeEnd('title', $event)"
+        >
+          <div class="drag-handle" cdkDragHandle></div>
+          <div
+            class="resize-handle-top"
+            mwlResizeHandle
+            [resizeEdges]="{ top: true }"
+          ></div>
+          <div
+            class="resize-handle-left"
+            mwlResizeHandle
+            [resizeEdges]="{ left: true }"
+          ></div>
+          <div
+            class="resize-handle-right"
+            mwlResizeHandle
+            [resizeEdges]="{ right: true }"
+          ></div>
+          <div
+            class="resize-handle-bottom"
+            mwlResizeHandle
+            [resizeEdges]="{ bottom: true }"
+          ></div>
+        </div>
+
+        <div
+          cdkDrag
+          cdkDragBoundary=".pdf-container"
+          style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 255, 0, 0.2);
+      width: {{ coordinates.value.pdfSettings.companyName.w }}px;
+      height: {{ coordinates.value.pdfSettings.companyName.h }}px;
+    "
+          (cdkDragMoved)="onDrag('companyName', $event)"
+          (cdkDragEnded)="onDragEnd('companyName', $event)"
+          [cdkDragFreeDragPosition]="{
+            x: dragPositions.companyName.x + offset.value.x,
+            y: dragPositions.companyName.y + offset.value.y
+          }"
+          mwlResizable
+          [enableGhostResize]="true"
+          (resizeEnd)="onResizeEnd('companyName', $event)"
+        >
+          <div class="drag-handle" cdkDragHandle></div>
+          <div
+            class="resize-handle-top"
+            mwlResizeHandle
+            [resizeEdges]="{ top: true }"
+          ></div>
+          <div
+            class="resize-handle-left"
+            mwlResizeHandle
+            [resizeEdges]="{ left: true }"
+          ></div>
+          <div
+            class="resize-handle-right"
+            mwlResizeHandle
+            [resizeEdges]="{ right: true }"
+          ></div>
+          <div
+            class="resize-handle-bottom"
+            mwlResizeHandle
+            [resizeEdges]="{ bottom: true }"
+          ></div>
+        </div>
+
+        <div
+          cdkDrag
+          cdkDragBoundary=".pdf-container"
+          style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 255, 0, 0.2);
+      width: {{ coordinates.value.pdfSettings.visitorCheck.w }}px;
+      height: {{ coordinates.value.pdfSettings.visitorCheck.h }}px;
+    "
+          (cdkDragMoved)="onDrag('visitorCheck', $event)"
+          (cdkDragEnded)="onDragEnd('visitorCheck', $event)"
+          [cdkDragFreeDragPosition]="{
+            x: dragPositions.visitorCheck.x + offset.value.x,
+            y: dragPositions.visitorCheck.y + offset.value.y
+          }"
+          mwlResizable
+          [enableGhostResize]="true"
+          (resizeEnd)="onResizeEnd('visitorCheck', $event)"
+        >
+          <div class="drag-handle" cdkDragHandle></div>
+          <div
+            class="resize-handle-top"
+            mwlResizeHandle
+            [resizeEdges]="{ top: true }"
+          ></div>
+          <div
+            class="resize-handle-left"
+            mwlResizeHandle
+            [resizeEdges]="{ left: true }"
+          ></div>
+          <div
+            class="resize-handle-right"
+            mwlResizeHandle
+            [resizeEdges]="{ right: true }"
+          ></div>
+          <div
+            class="resize-handle-bottom"
+            mwlResizeHandle
+            [resizeEdges]="{ bottom: true }"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

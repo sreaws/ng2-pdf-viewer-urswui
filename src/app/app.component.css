@@ -1,0 +1,108 @@
+.pdf-container {
+  border: 1px solid;
+}
+
+#pdf-file {
+  margin-bottom: 24px;
+  margin-left: 12px;
+}
+
+.ng2-pdf-viewer-container {
+  overflow: hidden;
+}
+
+mwlResizable {
+  box-sizing: border-box;
+}
+
+.resize-handle-top,
+.resize-handle-bottom {
+  position: absolute;
+  height: 5px;
+  cursor: row-resize;
+  width: 100%;
+}
+
+.resize-handle-top {
+  top: 0;
+  left: 0;
+}
+
+.resize-handle-bottom {
+  bottom: 0;
+  left: 0;
+}
+
+.resize-handle-left,
+.resize-handle-right {
+  position: absolute;
+  height: 100%;
+  cursor: col-resize;
+  width: 5px;
+}
+
+.resize-handle-left {
+  top: 0;
+  left: 0;
+}
+
+.resize-handle-right {
+  top: 0;
+  right: 0;
+}
+
+.drag-handle {
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  margin: 6px;
+}
+
+.content {
+  max-width: 666px;
+  margin: auto;
+}
+
+#secondPartTitle {
+  max-width: 200px;
+  margin: auto;
+}
+
+#pdfFormGroup {
+  width: 622px;
+  margin: auto;
+}
+
+.mailForm {
+  width: 400px;
+  margin: auto;
+}
+
+#formGroupBorder {
+  border: 1px solid;
+  width: 650px;
+  padding-bottom: 10px;
+  margin: auto;
+}
+
+#formCheckBox {
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+
+#offsetValues {
+  width: 120px;
+  margin: auto;
+}
+
+.plusHorizontal {
+  border-top: 1px solid;
+  width: 21px;
+  height: 1px;
+}
+
+.plusVertical {
+  border-left: 1px solid;
+  width: 1px;
+  height: 21px;
+}
